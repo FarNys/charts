@@ -4,6 +4,9 @@ import Menu from "./components/Menu";
 import Scale from "./components/Scale";
 import { motion, useViewportScroll } from "framer-motion";
 import ApexBar from "./components/ApexBar";
+import ApexScrollChart from "./components/ApexScrollChart";
+import ReactTable from "./components/ReactTable";
+import TablePaginate from "./components/TablePaginate";
 
 function App() {
   const { scrollYProgress } = useViewportScroll();
@@ -17,8 +20,11 @@ function App() {
       <Scale />
       <ChildDelay />
       <ChildTransition /> */}
-      <Menu />
-      <ApexBar />
+      {/* <Menu /> */}
+      {/* <ApexBar /> */}
+      <ApexScrollChart />
+      {/* <ReactTable />
+      <TablePaginate /> */}
     </div>
   );
 }

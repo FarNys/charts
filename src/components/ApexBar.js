@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 const ApexBar = () => {
   const [pos, setpos] = useState(0);
+
   //   useEffect(() => {
   //     const getEl = document.querySelector(".apex_chart_container");
   //     const toolEl = document.querySelector(".apexcharts-toolbar");

@@ -7,6 +7,9 @@ import ApexBar from "./components/ApexBar";
 import ApexScrollChart from "./components/ApexScrollChart";
 import ReactTable from "./components/ReactTable";
 import TablePaginate from "./components/TablePaginate";
+import DataGrid from "./components/DataGrid";
+import NivoLineData from "./components/NivoChart/NivoLineData";
+import NivoLine from "./components/NivoChart/NivoLine";
 
 function App() {
   const { scrollYProgress } = useViewportScroll();
@@ -25,6 +28,8 @@ function App() {
       <ApexScrollChart />
       {/* <ReactTable />
       <TablePaginate /> */}
+      {/* <DataGrid /> */}
+      <NivoLine />
     </div>
   );
 }

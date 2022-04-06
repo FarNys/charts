@@ -6,22 +6,22 @@ const ApexScrollChart = () => {
     min: 30,
     max: 90,
   });
-  var data2 = generateDayWiseTimeSeries(
-    new Date("22 Apr 2017").getTime(),
-    115,
-    {
-      min: 30,
-      max: 50,
-    }
-  );
-  var data3 = generateDayWiseTimeSeries(
-    new Date("22 Apr 2017").getTime(),
-    115,
-    {
-      min: 20,
-      max: 70,
-    }
-  );
+  // var data2 = generateDayWiseTimeSeries(
+  //   new Date("22 Apr 2017").getTime(),
+  //   115,
+  //   {
+  //     min: 30,
+  //     max: 50,
+  //   }
+  // );
+  // var data3 = generateDayWiseTimeSeries(
+  //   new Date("22 Apr 2017").getTime(),
+  //   115,
+  //   {
+  //     min: 20,
+  //     max: 70,
+  //   }
+  // );
   var options1 = {
     chart: {
       id: "chart2",
@@ -68,15 +68,15 @@ const ApexScrollChart = () => {
       strokeWidth: 3,
     },
     series: [
-      { name: "Data 1", data: data },
-      {
-        name: "Data 2",
-        data: data2,
-      },
-      {
-        name: "Data 3",
-        data: data3,
-      },
+      { name: "R uOK", data: data },
+      // {
+      //   name: "Data 2",
+      //   data: data2,
+      // },
+      // {
+      //   name: "Data 3",
+      //   data: data3,
+      // },
     ],
     tooltip: {
       theme: "dark",
@@ -112,8 +112,8 @@ const ApexScrollChart = () => {
           opacity: 0.4,
         },
         xaxis: {
-          min: new Date("27 Jul 2017 10:00:00").getTime(),
-          max: new Date("14 Aug 2017 10:00:00").getTime(),
+          min: new Date("20 Jul 2017 10:00:00").getTime(),
+          max: new Date("13 Aug 2017 10:00:00").getTime(),
         },
       },
     },
@@ -122,9 +122,9 @@ const ApexScrollChart = () => {
       {
         data: data,
       },
-      {
-        data: data2,
-      },
+      // {
+      //   data: data2,
+      // },
     ],
     stroke: {
       width: 2,
@@ -175,7 +175,7 @@ const ApexScrollChart = () => {
         // width={chartWidth}
         width="100%"
         height="500px"
-        // id="chart1"
+        id="chart1"
       />
       <Chart
         options={options2}
@@ -184,7 +184,7 @@ const ApexScrollChart = () => {
         // width={chartWidth}
         width="100%"
         height="150px"
-        // id="chart2"
+        id="chart2"
       />
     </div>
   );

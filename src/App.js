@@ -10,6 +10,8 @@ import TablePaginate from "./components/TablePaginate";
 import DataGrid from "./components/DataGrid";
 import NivoLineData from "./components/NivoChart/NivoLineData";
 import NivoLine from "./components/NivoChart/NivoLine";
+import RechartExample from "./components/Rechart/RechartExample";
+import ReSelect from "./components/ReSelect";
 
 function App() {
   const { scrollYProgress } = useViewportScroll();
@@ -25,11 +27,13 @@ function App() {
       <ChildTransition /> */}
       {/* <Menu /> */}
       {/* <ApexBar /> */}
-      <ApexScrollChart />
+      {/* <ApexScrollChart /> */}
       {/* <ReactTable />
       <TablePaginate /> */}
       {/* <DataGrid /> */}
-      <NivoLine />
+      {/* <NivoLine /> */}
+      <RechartExample />
+      {/* <ReSelect /> */}
     </div>
   );
 }

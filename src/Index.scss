@@ -1,7 +1,14 @@
+@font-face {
+  font-family: myFirstFont;
+  src: url("./font/IRAN\ Sans\ Regular.woff");
+  src: url("./font/IRAN\ Sans\ Regular.eot");
+  src: url("./font/IRAN\ Sans\ Regular.woff2");
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto", "myFirstFont", sans-serif;
 }
 .app_container {
   min-height: 100vh;
@@ -177,4 +184,56 @@ table {
   input {
     margin: 2rem 0;
   }
+}
+.scatter_chart {
+  border: 2px solid red;
+  width: 100%;
+}
+.legend_label_container {
+  display: flex;
+  border: 1px solid red;
+  ul {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    li {
+      // margin-right: 5px;
+      min-width: 50px;
+      padding: 3px;
+    }
+  }
+}
+// .chart_bar_color {
+//   fill: blue;
+// }
+.legend_class {
+  border: 2px solid red !important;
+}
+.rechart_container {
+  padding: 50px 0;
+  width: 100%;
+  background-color: rgb(229, 245, 248);
+}
+.responsive_rechart {
+  width: 100% !important;
+}
+.recharts-legend-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  ul {
+    width: fit-content;
+    li {
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+  }
+  // width: 100%;
+}
+.wrapper_tooltip {
+  border: 1px solid red !important;
+}
+.recharts-cartesian-axis-tick {
+  font-size: 12px;
+  font-weight: bold;
 }

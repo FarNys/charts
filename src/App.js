@@ -12,6 +12,7 @@ import NivoLineData from "./components/NivoChart/NivoLineData";
 import NivoLine from "./components/NivoChart/NivoLine";
 import RechartExample from "./components/Rechart/RechartExample";
 import ReSelect from "./components/ReSelect";
+import CarouselBS from "./components/Bootstrap/CarouselBS";
 
 function App() {
   const { scrollYProgress } = useViewportScroll();
@@ -34,6 +35,7 @@ function App() {
       {/* <NivoLine /> */}
       <RechartExample />
       {/* <ReSelect /> */}
+      {/* <CarouselBS /> */}
     </div>
   );
 }

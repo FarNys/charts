@@ -17,30 +17,33 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
-const data = [
-  { name: "Page KO", uv: 400, pv: 2400, amt: 2400, ca: 750 },
-  { name: "Page A", uv: 200, pv: 250, amt: 500, ca: 256 },
-  { name: "Page B", uv: 500, pv: 2000, amt: 1000, ca: 325 },
-  { name: "Page C", uv: 600, pv: 850, amt: 1600, ca: 700 },
-  { name: "Page d", uv: 310, pv: 850, amt: 675, ca: 222 },
-  { name: "Page F", uv: 255, pv: 850, amt: 850, ca: 111 },
-  { name: "Gladiator2022", uv: 76, pv: 850, amt: 358, ca: 333 },
-  { name: "Page Z", uv: 85, pv: 850, amt: 1200, ca: 444 },
-  { name: 53, uv: 600, pv: 267, amt: 2400, ca: 70 },
-];
+// const data = [
+//   { name: "Page KO", uv: 400, pv: 2400, amt: 2400, ca: 750 },
+//   { name: "Page A", uv: 200, pv: 250, amt: 500, ca: 256 },
+//   { name: "Page B", uv: 500, pv: 2000, amt: 1000, ca: 325 },
+//   { name: "Page C", uv: 600, pv: 850, amt: 1600, ca: 700 },
+//   { name: "Page d", uv: 310, pv: 850, amt: 675, ca: 222 },
+//   { name: "Page F", uv: 255, pv: 850, amt: 850, ca: 111 },
+//   { name: "Gladiator2022", uv: 76, pv: 850, amt: 358, ca: 333 },
+//   { name: "Page Z", uv: 85, pv: 850, amt: 1200, ca: 444 },
+//   { name: 53, uv: 600, pv: 267, amt: 2400, ca: 70 },
+// ];
 
-const dummyData = [
-  { name: "uv", state: true },
-  { name: "pv", state: true },
-  { name: "amt", state: true },
-];
+// const dummyData = [
+//   { name: "uv", state: true },
+//   { name: "pv", state: true },
+//   { name: "amt", state: true },
+// ];
 const colorSet = [
   "rgba(0, 143, 251, 0.85)",
   "#00d084",
   "rgb(254, 176, 25)",
   "rgb(255, 69, 96)",
   "#fffd86",
+  "#0d1a26",
 ];
+const urlBar = "http://192.168.1.118:8000/api/v1/sales/bar-category/";
+let urlBarSingle = "http://192.168.1.118:8000/api/v1/marketing/m-d-bar/";
 const RenderLineChart = () => {
   const [liveData, setliveData] = useState([]);
   const [liveState, setliveState] = useState([]);
@@ -48,28 +51,29 @@ const RenderLineChart = () => {
   useEffect(() => {
     axios({
       method: "get",
-      url: "http://192.168.1.118:8000/api/v1/sales/bar-category/",
+      url: urlBarSingle,
       headers: {
         Authorization: "Token 29ba6f6782e7f64987e9bb078bf72970f3ee1779",
       },
     }).then((res) => {
-      console.log(res.data.chart);
+      console.log(res);
       const data = res.data.chart;
       const dataLength = data.labels.length;
       const emptyList = [];
       for (let i = 0; i < dataLength; i++) {
         const x = {
           name: data.labels[i],
-          [data.name_1]: +data.data_1[i],
-          [data.name_2]: +data.data_2[i],
-          [data.name_3]: +data.data_3[i],
+          تعداد: data.data[i],
+          // [data.name_1]: +data.data_1[i],
+          // [data.name_2]: +data.data_2[i],
+          // [data.name_3]: +data.data_3[i],
         };
         emptyList.push(x);
       }
       setliveData(emptyList);
     });
   }, []);
-  console.log(liveData, data);
+  console.log(liveData);
   useEffect(() => {
     if (liveData.length > 0) {
       const el = liveData[0];
@@ -87,17 +91,19 @@ const RenderLineChart = () => {
       }
     }
   }, [liveData]);
-  const [barState, setbarState] = useState([
-    { name: "uv", state: true },
-    { name: "pv", state: true },
-    { name: "amt", state: true },
-    // { name: "ca", state: true },
-  ]);
+  // const [barState, setbarState] = useState([
+  //   { name: "uv", state: true },
+  //   { name: "pv", state: true },
+  //   { name: "amt", state: true },
+  //   // { name: "ca", state: true },
+  // ]);
 
   const legendHandler = (e) => {
     console.log(e);
     const selected = e.dataKey;
     const filtered = liveState.map((el) => {
+      if (liveState.length > 1) {
+      }
       return el.name === selected ? { ...el, state: false } : el;
     });
     setliveState(filtered);
@@ -159,8 +165,9 @@ const RenderLineChart = () => {
                       type="monotone"
                       dataKey={el.name}
                       stroke={colorSet[index]}
+                      strokeWidth="2px"
                       fill={colorSet[index]}
-                      fillOpacity={1}
+                      fillOpacity={0.85}
                       className="chart_bar_color"
                       // stackId="a"
                     />

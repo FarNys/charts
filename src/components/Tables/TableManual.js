@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import millify from "millify";
 import Select from "react-select";
@@ -11,7 +11,7 @@ const TableManual = () => {
   const formatNumber = (item) => {
     const spliter = item.toString().split("");
     const spliterLength = spliter.length;
-    console.log(spliter);
+    // console.log(spliter);
     if (spliterLength === 4) {
       const newVal =
         spliter.join("").slice(0, 1) + "," + spliter.join("").slice(1, 2) + "k";
@@ -28,7 +28,7 @@ const TableManual = () => {
         spliter.join("").slice(1, 2) +
         spliter.join("").slice(2, 3) +
         "k";
-      console.log(newVal);
+      // console.log(newVal);
     }
   };
   formatNumber("123456");
@@ -53,7 +53,7 @@ const TableManual = () => {
         Stock_att_max: "حداکثر موجودی در ویژگی",
       },
       body: {
-        count: 45,
+        count: 46,
         next: null,
         previous: null,
         results: [
@@ -309,366 +309,366 @@ const TableManual = () => {
             Stock_att_min: "0",
             Stock_att_max: "0",
           },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
-          {
-            cat_1: "پوشاک",
-            date_max: "1401-01-01",
-            OrderId: "50",
-            Quantity: "67",
-            total: "4,466,150",
-            available: "11",
-            unavailable: "38",
-            all_pro: "49",
-            depot_val_pro: "1,744,000",
-            Stock_pro_sum: "12",
-            depot_val_att: "0",
-            Stock_att_sum: "0",
-            Stock_pro_min: "-1",
-            Stock_pro_max: "4",
-            Stock_att_min: "0",
-            Stock_att_max: "0",
-          },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
+          // {
+          //   cat_1: "پوشاک",
+          //   date_max: "1401-01-01",
+          //   OrderId: "50",
+          //   Quantity: "67",
+          //   total: "4,466,150",
+          //   available: "11",
+          //   unavailable: "38",
+          //   all_pro: "49",
+          //   depot_val_pro: "1,744,000",
+          //   Stock_pro_sum: "12",
+          //   depot_val_att: "0",
+          //   Stock_att_sum: "0",
+          //   Stock_pro_min: "-1",
+          //   Stock_pro_max: "4",
+          //   Stock_att_min: "0",
+          //   Stock_att_max: "0",
+          // },
         ],
       },
     },
@@ -751,40 +751,54 @@ const TableManual = () => {
   const [perPage, setperPage] = useState(5);
   const [pageNumber, setpageNumber] = useState(0);
   const [totalPage, settotalPage] = useState(null);
-  const itemPerPage = (e) => {
-    setperPage(e.value);
-    console.log(e.value);
-  };
+  const itemPerPage = useCallback(
+    (e) => {
+      setperPage(e.value);
+      console.log(e.value);
+    },
+    [pageNumber]
+  );
   useMemo(() => {
     settotalPage(Math.ceil(dataLength / perPage));
   }, [perPage]);
-  console.log(totalPage);
 
   //
   const prevHandler = () => {
     console.log("Prev");
-    setpageNumber((prev) => prev - 1);
+    if (pageNumber > totalPage) {
+      console.log("FIX");
+      setpageNumber(totalPage - 2);
+    } else {
+      setpageNumber(pageNumber - 1);
+    }
   };
   const nextHandler = () => {
     console.log("Next");
-    setpageNumber((prev) => prev + 1);
+    setpageNumber(pageNumber + 1);
   };
   const [goToState, setgoToState] = useState(0);
   const goToChange = (e) => {
-    setgoToState(e.target.value);
+    const target = e.target.value;
+    console.log(target);
+    if (+target < 0) {
+      setgoToState(0);
+      console.log("BACK TO ZERO");
+    } else if (+target > +totalPage) {
+      setgoToState(+totalPage - 1);
+      console.log("BACK TO MAXIMUM");
+    } else {
+      setgoToState(+target);
+      console.log("STANDARD");
+    }
   };
   // console.log(goToState);
   // console.log(counter);
   const changePageHandler = () => {
-    if (goToState < 0) {
-      setpageNumber(0);
-    } else if (goToState > totalPage) {
-      setpageNumber(totalPage);
-    } else {
-      setpageNumber(goToState);
-    }
+    setpageNumber(goToState);
   };
+  console.log(totalPage);
   console.log(pageNumber);
+  // console.log(goToState);
   return (
     <div className="table_manual_container">
       <div className="table_manual_box">
@@ -814,6 +828,9 @@ const TableManual = () => {
                       <div></div>
                       {+((+val.replaceAll(",", "") / initial) * 100).toFixed(2)}
                       <span style={{ paddingLeft: "5px" }}>%</span>
+                      <TdText className="value_show" key={key + val} id={key}>
+                        {val}
+                      </TdText>
                     </Tdw>
                   ) : (
                     <td key={val + key} id={key}>
@@ -833,25 +850,37 @@ const TableManual = () => {
             defaultValue={{ label: 5, value: 5 }}
             onChange={itemPerPage}
           />
-          <div className="table_paginator_page_counter">
-            {+pageNumber * +perPage < dataLength
-              ? +pageNumber * +perPage + 1
-              : +dataLength - perPage}
-            -
-            {+pageNumber * +perPage + perPage < dataLength
-              ? +pageNumber * +perPage + perPage
+          {/* <div className="table_paginator_page_counter">
+            {+pageNumber * +perPage + 1} ----
+            {+(pageNumber - 1) * +perPage < dataLength
+              ? +(pageNumber + 1) * +perPage
               : dataLength}{" "}
             from {dataLength}{" "}
+          </div> */}
+          <div className="table_paginator_page_counter">
+            from{" "}
+            {(pageNumber + 1) * perPage < dataLength
+              ? pageNumber * perPage + 1
+              : (totalPage - 1) * perPage}{" "}
+            --- to{" "}
+            {(pageNumber + 1) * perPage < dataLength
+              ? (pageNumber + 1) * perPage
+              : dataLength}
           </div>
-          <div>{totalPage}</div>
+          <div>totalPage={totalPage}</div>
+          <div>--ITEMS={dataLength}</div>
         </div>
         <div className="table_paginator_next_prev">
-          <BsFillArrowLeftCircleFill
-            color="blue"
-            style={{ marginRight: "3px" }}
-            onClick={prevHandler}
-          />
-          <BsFillArrowRightCircleFill color="blue" onClick={nextHandler} />
+          {pageNumber * perPage !== 0 && (
+            <BsFillArrowLeftCircleFill
+              color="blue"
+              style={{ marginRight: "3px" }}
+              onClick={prevHandler}
+            />
+          )}
+          {(pageNumber + 1) * perPage < dataLength && (
+            <BsFillArrowRightCircleFill color="blue" onClick={nextHandler} />
+          )}
         </div>
         <div className="table_paginator_goto">
           <input type="number" onChange={goToChange} value={goToState} />
@@ -881,11 +910,24 @@ const Td = styled.td`
     z-index: -1;
     // opacity: ${(props) => 0.05 + props.colorWidth / 100};
   }
+  .
 `;
 const Tdw = styled(Td)`
   div {
     width: ${(props) => 2 + props.colorWidth}%;
     // animation-delay: ${(props) => props.id / 10}s;
+  }
+  &:hover {
+    color: transparent;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    div {
+      background-color: transparent;
+    }
+    .value_show {
+      opacity: 1;
+      transition: 0.4s ease all;
+      border: 1px solid #00ccff;
+    }
   }
 `;
 const TableD = styled.td`
@@ -921,4 +963,19 @@ const TableD = styled.td`
       transition: 0.2s ease all;
     }
   }
+`;
+const TdText = styled.td`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  height: fit-content;
+  opacity: 0;
+  /* background-color: black; */
+  color: black;
+  /* padding: 0 6px; */
+  font-size: 10px;
+  border-radius: 6px;
+  transition: 0.4s ease all;
 `;

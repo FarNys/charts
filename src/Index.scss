@@ -341,16 +341,20 @@
   overflow: hidden;
   div {
     // transform: translateX(-100%);
-    animation: 0.4s linear animate forwards;
+    animation: 0.8s ease-in-out animate forwards;
     transform: translateX(-100%) scaleX(0.8);
+    border-radius: 0 6px 6px 0;
   }
 }
 @keyframes animate {
   0% {
     transform: translateX(-100%) scaleX(0.8);
   }
+  50% {
+    transform: translateX(0%) scaleX(1.1);
+  }
   70% {
-    transform: translateX(5%) scaleX(1.1);
+    transform: translateX(5%) scaleX(1.2);
   }
   100% {
     transform: translateX(0) scaleX(1);

@@ -17,253 +17,342 @@
   flex-direction: column;
   align-items: center;
 }
-.scale_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  min-height: 100vh;
-  .box_container {
-    width: 50px;
-    height: 50px;
-    border-radius: 12px;
-    background-color: white;
-  }
-}
-.childdelay_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  min-height: 100vh;
-  .childdelay_box {
-    border: 3px solid rgb(252, 252, 133);
-    width: 200px;
-  }
-}
-.child_transition_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  min-height: 100vh;
-}
-.menu_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  min-height: 100vh;
-  .menu_box {
-    border: 1px solid blue;
-  }
-}
-
-.apex_chart_container {
-  border-radius: 1rem;
-  box-shadow: 0 1px 8px 1px rgba(0, 0, 0, 0.3);
-  width: 90%;
-  margin: 2rem auto;
-  padding: 1rem;
-  background-color: aliceblue;
-  position: relative;
-  .test_pos {
-    position: relative;
-    height: auto;
-    justify-content: flex-end;
-    text-align: right;
-    right: 0;
-  }
-}
-.apex_chart_container_box {
-  width: 95%;
-  margin: 1rem auto;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  position: relative;
-}
-
-.apexcharts-yaxis-label {
-  top: 10px;
-  left: 50px;
-}
-#apexchartssimplexbar {
-  padding: 2rem 0;
-  position: relative;
-  // overflow: visible !important;
-}
-.apexcharts-toolbar {
-  left: 0;
-  font-size: 2rem !important;
-  .apexcharts-menu-icon {
-    transform: scale(1.5);
-  }
-}
-.apexcharts-yaxis {
-  // transform: translateX(100px);
-}
-.apexscrollchart_container {
-  width: 100%;
-}
-.table_react_table {
-  width: 100%;
-  padding: 1rem;
-  border: 1px solid red;
-}
-table {
-  border-spacing: 0;
-  border: 1px solid black;
-
-  tr {
-    :last-child {
-      td {
-        border-bottom: 0;
-      }
-    }
-  }
-
-  th,
-  td {
-    margin: 0;
-    padding: 0.5rem;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
-
-    :last-child {
-      border-right: 0;
-    }
-  }
-  //HIDE TOP HEADER!
-  thead tr:first-child {
-    display: none;
-  }
-}
-.lds-dual-ring {
-  display: inline-block;
-  width: 80px;
-  height: 80px;
-}
-.lds-dual-ring:after {
-  content: " ";
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 6px solid #fff;
-  border-color: red transparent #fff transparent;
-  animation: lds-dual-ring 1.2s linear infinite;
-}
-@keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.apexcharts-inner {
-  border: 3px solid red;
-}
-.apexcharts-series {
-  // transform: translateX(200px);
-}
-.nivo_parent {
-  border: 2px solid red;
-  height: 500px;
-  width: 100%;
-  padding: 2rem 0;
-}
-.nivo_child {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  input {
-    margin: 2rem 0;
-  }
-}
-.scatter_chart {
-  border: 2px solid red;
-  width: 100%;
-}
-.legend_label_container {
-  display: flex;
-  border: 1px solid red;
-  ul {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    li {
-      // margin-right: 5px;
-      min-width: 50px;
-      padding: 3px;
-    }
-  }
-}
-// .chart_bar_color {
-//   fill: blue;
+// .scale_container {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   min-height: 100vh;
+//   .box_container {
+//     width: 50px;
+//     height: 50px;
+//     border-radius: 12px;
+//     background-color: white;
+//   }
 // }
-//RECHART STYLE
-.legend_class {
-  border: 2px solid red !important;
-}
-.rechart_container {
-  padding: 50px 0;
+// .childdelay_container {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   min-height: 100vh;
+//   .childdelay_box {
+//     border: 3px solid rgb(252, 252, 133);
+//     width: 200px;
+//   }
+// }
+// .child_transition_container {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   min-height: 100vh;
+// }
+// .menu_container {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   min-height: 100vh;
+//   .menu_box {
+//     border: 1px solid blue;
+//   }
+// }
+
+// .apex_chart_container {
+//   border-radius: 1rem;
+//   box-shadow: 0 1px 8px 1px rgba(0, 0, 0, 0.3);
+//   width: 90%;
+//   margin: 2rem auto;
+//   padding: 1rem;
+//   background-color: aliceblue;
+//   position: relative;
+//   .test_pos {
+//     position: relative;
+//     height: auto;
+//     justify-content: flex-end;
+//     text-align: right;
+//     right: 0;
+//   }
+// }
+// .apex_chart_container_box {
+//   width: 95%;
+//   margin: 1rem auto;
+//   overflow-x: scroll;
+//   overflow-y: hidden;
+//   position: relative;
+// }
+
+// .apexcharts-yaxis-label {
+//   top: 10px;
+//   left: 50px;
+// }
+// #apexchartssimplexbar {
+//   padding: 2rem 0;
+//   position: relative;
+//   // overflow: visible !important;
+// }
+// .apexcharts-toolbar {
+//   left: 0;
+//   font-size: 2rem !important;
+//   .apexcharts-menu-icon {
+//     transform: scale(1.5);
+//   }
+// }
+// .apexcharts-yaxis {
+//   // transform: translateX(100px);
+// }
+// .apexscrollchart_container {
+//   width: 100%;
+// }
+// .table_react_table {
+//   width: 100%;
+//   padding: 1rem;
+//   border: 1px solid red;
+// }
+// // table {
+// //   border-spacing: 0;
+// //   border: 1px solid black;
+
+// //   tr {
+// //     :last-child {
+// //       td {
+// //         border-bottom: 0;
+// //       }
+// //     }
+// //   }
+
+// //   th,
+// //   td {
+// //     margin: 0;
+// //     padding: 0.5rem;
+// //     border-bottom: 1px solid black;
+// //     border-right: 1px solid black;
+
+// //     :last-child {
+// //       border-right: 0;
+// //     }
+// //   }
+// //   //HIDE TOP HEADER!
+// //   thead tr:first-child {
+// //     display: none;
+// //   }
+// // }
+// .lds-dual-ring {
+//   display: inline-block;
+//   width: 80px;
+//   height: 80px;
+// }
+// .lds-dual-ring:after {
+//   content: " ";
+//   display: block;
+//   width: 64px;
+//   height: 64px;
+//   margin: 8px;
+//   border-radius: 50%;
+//   border: 6px solid #fff;
+//   border-color: red transparent #fff transparent;
+//   animation: lds-dual-ring 1.2s linear infinite;
+// }
+// @keyframes lds-dual-ring {
+//   0% {
+//     transform: rotate(0deg);
+//   }
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }
+
+// .apexcharts-inner {
+//   border: 3px solid red;
+// }
+// .apexcharts-series {
+//   // transform: translateX(200px);
+// }
+// .nivo_parent {
+//   border: 2px solid red;
+//   height: 500px;
+//   width: 100%;
+//   padding: 2rem 0;
+// }
+// .nivo_child {
+//   width: 100%;
+//   height: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   input {
+//     margin: 2rem 0;
+//   }
+// }
+// .scatter_chart {
+//   border: 2px solid red;
+//   width: 600px !important;
+// }
+// .legend_label_container {
+//   display: flex;
+//   border: 1px solid red;
+//   ul {
+//     display: flex;
+//     justify-content: center;
+//     width: 100%;
+//     li {
+//       // margin-right: 5px;
+//       min-width: 50px;
+//       padding: 3px;
+//     }
+//   }
+// }
+// // .chart_bar_color {
+// //   fill: blue;
+// // }
+// //RECHART STYLE
+// .legend_class {
+//   border: 2px solid red !important;
+// }
+// .rechart_container {
+//   padding: 50px 0;
+//   width: 100%;
+//   background-color: rgb(229, 245, 248);
+// }
+.rechart_container_scatter {
+  border: 1px solid red;
   width: 100%;
-  background-color: rgb(229, 245, 248);
 }
-.responsive_rechart {
-  width: 100% !important;
-}
-.recharts-legend-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  ul {
-    width: fit-content;
-    li {
-      padding: 0.5rem;
-      cursor: pointer;
-    }
-  }
-  // width: 100%;
-}
-.wrapper_tooltip {
-  border: 1px solid red !important;
-}
+// .responsive_rechart {
+//   width: 100% !important;
+// }
+// .recharts-legend-wrapper {
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   ul {
+//     width: fit-content;
+//     li {
+//       padding: 0.5rem;
+//       cursor: pointer;
+//     }
+//   }
+//   // width: 100%;
+// }
+// .wrapper_tooltip {
+//   border: 1px solid red !important;
+// }
 .recharts-cartesian-axis-tick {
   font-size: 12px;
   font-weight: bold;
 }
-//RECHART STYLE END
-.carousel_slick_container {
+
+// .scatter_rechart {
+//   border: 1px solid red;
+//   width: 100% !important;
+// }
+
+// //RECHART STYLE END
+// .carousel_slick_container {
+//   width: 90%;
+//   h3 {
+//     height: 500px;
+//   }
+//   // overflow-x: hidden;
+// }
+// .carousel_child_container {
+//   display: grid !important;
+//   grid-template-columns: 2fr 4fr 3fr 3fr;
+//   gap: 1rem;
+//   width: 90% !important;
+//   margin: auto;
+//   p {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     min-height: 200px;
+//     flex: 1;
+//     border: 1px solid red;
+//   }
+// }
+// @media (max-width: 900px) {
+//   .carousel_child_container {
+//     grid-template-columns: 1fr;
+//     // min-height: 200px;
+//   }
+// }
+//table manual
+.table_manual_container {
+  padding: 3rem;
   width: 90%;
-  h3 {
-    height: 500px;
+  margin-top: 2rem;
+  font-family: "Roboto", sans-serif;
+  border-radius: 12px !important;
+  background-color: white;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);
+  .table_manual_box {
+    overflow-x: scroll;
   }
-  // overflow-x: hidden;
+  table {
+    margin-bottom: 2rem;
+    // border: 1px solid red;
+    border-collapse: collapse;
+    font-size: 14px;
+    thead {
+      // color: red;
+
+      text-align: left;
+      padding: 0.5rem 0;
+      white-space: nowrap;
+      tr {
+        td {
+          padding: 0.5rem;
+          border: 1px solid rgb(230, 230, 238);
+          font-weight: bold;
+          min-width: 65px;
+          text-align: center;
+          // min-width: auto;
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          padding: 0.75rem 0.5rem;
+          border: 1px solid rgb(230, 230, 238);
+        }
+      }
+    }
+  }
 }
-.carousel_child_container {
-  display: grid !important;
-  grid-template-columns: 2fr 4fr 3fr 3fr;
-  gap: 1rem;
-  width: 90% !important;
-  margin: auto;
-  p {
+.table_paginator_container {
+  margin: 1rem 0;
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.table_dropdown_container {
+  display: flex;
+  .table_paginator_page_counter {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 200px;
-    flex: 1;
-    border: 1px solid red;
+    margin-left: 1rem;
   }
 }
-@media (max-width: 900px) {
-  .carousel_child_container {
-    grid-template-columns: 1fr;
-    // min-height: 200px;
+.tdw_animation {
+  overflow: hidden;
+  div {
+    // transform: translateX(-100%);
+    animation: 0.4s linear animate forwards;
+    transform: translateX(-100%) scaleX(0.8);
+  }
+}
+@keyframes animate {
+  0% {
+    transform: translateX(-100%) scaleX(0.8);
+  }
+  70% {
+    transform: translateX(5%) scaleX(1.1);
+  }
+  100% {
+    transform: translateX(0) scaleX(1);
   }
 }

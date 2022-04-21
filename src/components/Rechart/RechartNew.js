@@ -17,6 +17,64 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
+
+const data = {
+  labels: ["1400-12", "1401-01"],
+  series: [
+    {
+      name: "1400off",
+      data: [41, 0],
+    },
+    {
+      name: "Ch20X11mOd",
+      data: [15, 26],
+    },
+    {
+      name: "Mop15Y1wetX",
+      data: [0, 2],
+    },
+    {
+      name: "Mop20YMod1X",
+      data: [6, 11],
+    },
+    {
+      name: "mdg15-y735yc",
+      data: [63, 38],
+    },
+    {
+      name: "mdg20-yyydpq",
+      data: [38, 27],
+    },
+    {
+      name: "mdg30-tf0fdz",
+      data: [25, 25],
+    },
+    {
+      name: "mdg40-z3mq3n",
+      data: [26, 15],
+    },
+    {
+      name: "mdg50-nm1myq",
+      data: [14, 10],
+    },
+    {
+      name: "mdg60-9hh5mp",
+      data: [10, 4],
+    },
+    {
+      name: "modiagergtl2",
+      data: [7, 4],
+    },
+    {
+      name: "offer100_adv",
+      data: [13, 3],
+    },
+    {
+      name: "کد تخفیف ندارد",
+      data: [54, 24],
+    },
+  ],
+};
 // const data = [
 //   { name: "Page KO", uv: 400, pv: 2400, amt: 2400, ca: 750 },
 //   { name: "Page A", uv: 200, pv: 250, amt: 500, ca: 256 },
@@ -42,24 +100,31 @@ const colorSet = [
   "#fffd86",
   "#0d1a26",
 ];
-const urlBar = "http://192.168.1.118:8000/api/v1/sales/bar-category/";
-let urlBarSingle = "http://192.168.1.118:8000/api/v1/marketing/m-d-bar/";
-let marketingBar = "http://192.168.1.68:80/api/v1/marketing/m-bar-brand/";
+const rUrl = "http://192.168.1.68:80/api/v1/marketing/m-code-line/";
 
-const RenderLineChart = ({ isSingle }) => {
+const RechartNew = ({ isSingle }) => {
+  //   for (let i = 0; i < data.series.length; i++) {
+  //     const emptyList = [];
+  //     for (let j = 0; j < data.labels.length; j++) {
+  //       const x = { [data.labels[j]]: data.series[i].data[j] };
+  //       emptyList.push({ ...x });
+  //       console.log({ ...emptyList[0], ...emptyList[1] });
+  //     }
+  //   }
+
   const [liveData, setliveData] = useState([]);
   const [liveState, setliveState] = useState([]);
   console.log(isSingle);
   useEffect(() => {
     axios({
       method: "get",
-      url: marketingBar,
+      url: rUrl,
       headers: {
         Authorization: "Token 29ba6f6782e7f64987e9bb078bf72970f3ee1779",
       },
     }).then((res) => {
-      console.log(res);
       const data = res.data.chart;
+      console.log(data);
       const dataLength = data.labels.length;
       const emptyList = [];
       for (let i = 0; i < dataLength; i++) {
@@ -187,7 +252,7 @@ const RenderLineChart = ({ isSingle }) => {
               cursor={{
                 stroke: "#45321c",
                 strokeWidth: 1,
-                fill: "45321c",
+                fill: "#45321c",
                 opacity: 0.2,
               }}
             />
@@ -203,4 +268,4 @@ const RenderLineChart = ({ isSingle }) => {
   );
 };
 
-export default RenderLineChart;
+export default RechartNew;

@@ -13,6 +13,9 @@ import NivoLine from "./components/NivoChart/NivoLine";
 import RechartExample from "./components/Rechart/RechartExample";
 import ReSelect from "./components/ReSelect";
 import CarouselBS from "./components/Bootstrap/CarouselBS";
+import ScatterCharts from "./components/Rechart/ScatterChart";
+import RechartNew from "./components/Rechart/RechartNew";
+import TableManual from "./components/Tables/TableManual";
 
 function App() {
   const { scrollYProgress } = useViewportScroll();
@@ -33,9 +36,12 @@ function App() {
       <TablePaginate /> */}
       {/* <DataGrid /> */}
       {/* <NivoLine /> */}
-      <RechartExample />
+      {/* <RechartExample /> */}
+      {/* <RechartNew /> */}
+      {/* <ScatterCharts /> */}
       {/* <ReSelect /> */}
       {/* <CarouselBS /> */}
+      <TableManual />
     </div>
   );
 }

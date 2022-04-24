@@ -1,13 +1,86 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import styled from "styled-components";
 import millify from "millify";
 import Select from "react-select";
+import { baseUrl } from "../../App";
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
+import axios from "axios";
+import SingleHeader from "./SingleHeader";
+import { useDispatch, useSelector } from "react-redux";
+// import { useLocation } from "react-router-dom";
+
+// import { useSearchParams } from "react-router-dom";
 
 const TableManual = () => {
+  const dispatch = useDispatch();
+  const [tableH, settableH] = useState([]);
+  const [tableB, settableB] = useState([]);
+  const [tableLength, settableLength] = useState(null);
+  // const [sParams, setsParams] = useSearchParams();
+
+  const sortDirection = useSelector((state) => state.TableSlice.sortDir);
+  // console.log(sortDirection);
+
+  const rowRef = useRef();
+  useEffect(() => {
+    console.log(rowRef);
+  }, []);
+
+  const currentSort = useSelector((state) => state.TableSlice.currentSort);
+  const currentDirection = useSelector(
+    (state) => state.TableSlice.currentDirection
+  );
+
+  //ITEM PER PAGE HANDLER
+  const [perPage, setperPage] = useState(5);
+  const [pageNumber, setpageNumber] = useState(0);
+  const [totalPage, settotalPage] = useState(null);
+  // const [sortDirection, setsortDirection] = useState();
+  const [sortType, setsortType] = useState();
+  const table_Cat_url = `${baseUrl}/api/v1/supply/return/brand/?limit=${perPage}&offset=${
+    pageNumber * perPage
+  }&sort_value=${currentSort}&sort_ascending=${currentDirection}`;
+
+  // http://192.168.1.68:80/api/v1/supply/return/monthly/?limit=5&offset=-5
+
+  useEffect(() => {
+    settableH([]);
+    settableB([]);
+    settableLength(null);
+    console.log("zxzxzxzxz");
+    axios({
+      method: "get",
+      url: table_Cat_url,
+      headers: {
+        // Authorization: "Token 20cbeb0cdaab80e56244ffd303550cb049ba1927",
+        Authorization: "Token 29ba6f6782e7f64987e9bb078bf72970f3ee1779",
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+        const tableHeader = res.data.table.header;
+        const tableBody = res.data.table.body.results;
+
+        // dispatch(getTableHeader({table_header:tableHeader}))
+        settableLength(res.data.table.body.count);
+        settableH(tableHeader);
+        settableB(tableBody);
+
+        // console.log(tableHeader);
+        // console.log(tableBody);
+      })
+      .catch((err) => console.log(err));
+  }, [perPage, pageNumber, currentSort, currentDirection]);
+
   const formatNumber = (item) => {
     const spliter = item.toString().split("");
     const spliterLength = spliter.length;
@@ -745,12 +818,9 @@ const TableManual = () => {
     for (let i = 0; i < getEl.length; i++) {
       getEl[i].style.animationDelay = `${i / 10}s`;
     }
+    console.log(getEl);
   }, []);
 
-  //ITEM PER PAGE HANDLER
-  const [perPage, setperPage] = useState(5);
-  const [pageNumber, setpageNumber] = useState(0);
-  const [totalPage, settotalPage] = useState(null);
   const itemPerPage = useCallback(
     (e) => {
       setperPage(e.value);
@@ -759,8 +829,8 @@ const TableManual = () => {
     [pageNumber]
   );
   useMemo(() => {
-    settotalPage(Math.ceil(dataLength / perPage));
-  }, [perPage]);
+    settotalPage(Math.ceil(tableLength / perPage));
+  }, [perPage, tableLength]);
 
   //
   const prevHandler = () => {
@@ -796,97 +866,126 @@ const TableManual = () => {
   const changePageHandler = () => {
     setpageNumber(goToState);
   };
-  console.log(totalPage);
-  console.log(pageNumber);
+  // console.log(totalPage);
+  // console.log(pageNumber);
   // console.log(goToState);
   return (
     <div className="table_manual_container">
-      <div className="table_manual_box">
-        <table>
-          <thead>
-            <tr>
-              {Object.entries(tableHeader).map(([key, val]) => (
-                <td className="td_head" key={key} id={key}>
-                  {val}
-                </td>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {tableData.map((el, index) => (
-              <tr key={`el+${index}`}>
-                {Object.entries(el).map(([key, val]) =>
-                  key === "Quantity" ? (
-                    <Tdw
-                      className="tdw_animation"
-                      key={val + key}
+      {tableH.length === 0 ? (
+        <h1>Loading</h1>
+      ) : (
+        <>
+          <div className="table_manual_box">
+            <table>
+              <thead>
+                <tr>
+                  {Object.entries(tableH).map(([key, val]) => (
+                    // <td className="td_head" key={key} id={key}>
+                    //   {val}
+                    // </td>
+                    <SingleHeader
+                      key={key}
+                      val={val}
                       id={key}
-                      colorWidth={
-                        +((+val.replaceAll(",", "") / initial) * 100).toFixed(2)
-                      }
-                    >
-                      <div></div>
-                      {+((+val.replaceAll(",", "") / initial) * 100).toFixed(2)}
-                      <span style={{ paddingLeft: "5px" }}>%</span>
-                      <TdText className="value_show" key={key + val} id={key}>
-                        {val}
-                      </TdText>
-                    </Tdw>
-                  ) : (
-                    <td key={val + key} id={key}>
-                      {val}
-                    </td>
-                  )
-                )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div className="table_paginator_container">
-        <div className="table_dropdown_container">
-          <Select
-            options={options}
-            defaultValue={{ label: 5, value: 5 }}
-            onChange={itemPerPage}
-          />
-          {/* <div className="table_paginator_page_counter">
+                      // sortDirection={sortDirection}
+                      // setsortDirection={setsortDirection}
+                      setsortType={setsortType}
+                    />
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {tableB.map((el, index) => (
+                  <tr key={`el+${index}`} ref={rowRef}>
+                    {Object.entries(el).map(([key, val]) =>
+                      key === "Quantity" ? (
+                        <Tdw
+                          className="tdw_animation"
+                          key={val + key}
+                          id={key}
+                          colorWidth={
+                            +(
+                              (+val.replaceAll(",", "") / initial) *
+                              100
+                            ).toFixed(2)
+                          }
+                        >
+                          <div></div>
+                          {
+                            +(
+                              (+val.replaceAll(",", "") / initial) *
+                              100
+                            ).toFixed(2)
+                          }
+                          <span style={{ paddingLeft: "5px" }}>%</span>
+                          <TdText
+                            className="value_show"
+                            key={key + val}
+                            id={key}
+                          >
+                            {val}
+                          </TdText>
+                        </Tdw>
+                      ) : (
+                        <td key={val + key} id={key}>
+                          {val}
+                        </td>
+                      )
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="table_paginator_container">
+            <div className="table_dropdown_container">
+              <Select
+                options={options}
+                defaultValue={{ label: 5, value: 5 }}
+                onChange={itemPerPage}
+              />
+              {/* <div className="table_paginator_page_counter">
             {+pageNumber * +perPage + 1} ----
             {+(pageNumber - 1) * +perPage < dataLength
               ? +(pageNumber + 1) * +perPage
               : dataLength}{" "}
             from {dataLength}{" "}
           </div> */}
-          <div className="table_paginator_page_counter">
-            from{" "}
-            {(pageNumber + 1) * perPage < dataLength
-              ? pageNumber * perPage + 1
-              : (totalPage - 1) * perPage}{" "}
-            --- to{" "}
-            {(pageNumber + 1) * perPage < dataLength
-              ? (pageNumber + 1) * perPage
-              : dataLength}
+              <div className="table_paginator_page_counter">
+                from{" "}
+                {(pageNumber + 1) * perPage < tableLength
+                  ? pageNumber * perPage + 1
+                  : (totalPage - 1) * perPage}{" "}
+                --- to{" "}
+                {(pageNumber + 1) * perPage < tableLength
+                  ? (pageNumber + 1) * perPage
+                  : tableLength}
+              </div>
+              <div>totalPage={totalPage}</div>
+              <div>--ITEMS={tableLength}</div>
+            </div>
+            <div className="table_paginator_next_prev">
+              {pageNumber * perPage !== 0 && (
+                <BsFillArrowLeftCircleFill
+                  color="blue"
+                  style={{ marginRight: "3px" }}
+                  onClick={prevHandler}
+                />
+              )}
+              {(pageNumber + 1) * perPage < tableLength && (
+                <BsFillArrowRightCircleFill
+                  color="blue"
+                  onClick={nextHandler}
+                />
+              )}
+            </div>
+            <div className="table_paginator_goto">
+              <input type="number" onChange={goToChange} value={goToState} />
+              <button onClick={changePageHandler}>Go</button>
+            </div>
           </div>
-          <div>totalPage={totalPage}</div>
-          <div>--ITEMS={dataLength}</div>
-        </div>
-        <div className="table_paginator_next_prev">
-          {pageNumber * perPage !== 0 && (
-            <BsFillArrowLeftCircleFill
-              color="blue"
-              style={{ marginRight: "3px" }}
-              onClick={prevHandler}
-            />
-          )}
-          {(pageNumber + 1) * perPage < dataLength && (
-            <BsFillArrowRightCircleFill color="blue" onClick={nextHandler} />
-          )}
-        </div>
-        <div className="table_paginator_goto">
-          <input type="number" onChange={goToChange} value={goToState} />
-          <button onClick={changePageHandler}>Go</button>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };
@@ -919,7 +1018,7 @@ const Tdw = styled(Td)`
   }
   &:hover {
     color: transparent;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     div {
       background-color: transparent;
     }

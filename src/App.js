@@ -16,6 +16,8 @@ import CarouselBS from "./components/Bootstrap/CarouselBS";
 import ScatterCharts from "./components/Rechart/ScatterChart";
 import RechartNew from "./components/Rechart/RechartNew";
 import TableManual from "./components/Tables/TableManual";
+import SwrTest from "./components/Swr/SwrTest";
+export const baseUrl = "http://192.168.1.118:8000";
 
 function App() {
   const { scrollYProgress } = useViewportScroll();
@@ -43,6 +45,7 @@ function App() {
       {/* <CarouselBS /> */}
       {/* <TablePaginate /> */}
       <TableManual />
+      {/* <SwrTest /> */}
     </div>
   );
 }

@@ -7,6 +7,9 @@ const initialState = {
   sortDirection: "desc",
   headerTable: [],
   dataTable: [],
+  //MANUAL TABLE
+  currentSort: undefined,
+  currentDirection: undefined,
 };
 
 export const TableSlice = createSlice({
@@ -42,6 +45,13 @@ export const TableSlice = createSlice({
     sortAsc: (state, action) => {
       state.sortDirection = "asc";
     },
+    //MANUAL TABLE
+    getCurrentSort: (state, action) => {
+      state.currentSort = action.payload.data;
+    },
+    getCurrentDir: (state, action) => {
+      state.currentDirection = action.payload.data;
+    },
   },
 });
 
@@ -54,6 +64,9 @@ export const {
   getSortData,
   sortDesc,
   sortAsc,
+  sortDirStore,
+  getCurrentSort,
+  getCurrentDir,
 } = TableSlice.actions;
 
 export default TableSlice.reducer;

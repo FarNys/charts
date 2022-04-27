@@ -17,6 +17,8 @@ import ScatterCharts from "./components/Rechart/ScatterChart";
 import RechartNew from "./components/Rechart/RechartNew";
 import TableManual from "./components/Tables/TableManual";
 import SwrTest from "./components/Swr/SwrTest";
+import Data from "./components/Data/Data";
+import TableM from "./components/Tables/TableM";
 export const baseUrl = "http://192.168.1.118:8000";
 
 function App() {
@@ -44,8 +46,10 @@ function App() {
       {/* <ReSelect /> */}
       {/* <CarouselBS /> */}
       {/* <TablePaginate /> */}
-      <TableManual />
+      {/* <TableManual /> */}
+      <TableM />
       {/* <SwrTest /> */}
+      {/* <Data /> */}
     </div>
   );
 }

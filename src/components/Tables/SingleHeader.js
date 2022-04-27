@@ -10,13 +10,7 @@ import {
   BsFillArrowUpCircleFill,
 } from "react-icons/bs";
 
-const SingleHeader = ({
-  id,
-  val,
-  setsortDirection,
-  sortDirection,
-  setsortType,
-}) => {
+const SingleHeader = ({ id, val }) => {
   const dispatch = useDispatch();
   //   const [sortDir, setsortDir] = useState("asc");
 
@@ -65,7 +59,7 @@ const ConditionalSort = ({ id }) => {
     (state) => state.TableSlice.currentDirection
   );
   //   console.log(currentSort, currentDirection);
-  console.log(id, currentSort);
+  // console.log(id, currentSort);
 
   if (currentSort === id) {
     return (

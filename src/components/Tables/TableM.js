@@ -1,6 +1,7 @@
 import React, {
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -16,17 +17,19 @@ import {
 import axios from "axios";
 import SingleHeader from "./SingleHeader";
 import { useDispatch, useSelector } from "react-redux";
+import AnimatedRow from "./AnimatedRow";
+import AnimateData from "./AnimateData";
 // import { useLocation } from "react-router-dom";
 
 // import { useSearchParams } from "react-router-dom";
 
-const TableManual = () => {
+const TableM = () => {
   const dispatch = useDispatch();
   const [tableH, settableH] = useState([]);
   const [tableB, settableB] = useState([]);
   const [tableLength, settableLength] = useState(null);
 
-  const sortDirection = useSelector((state) => state.TableSlice.sortDir);
+  //   const sortDirection = useSelector((state) => state.TableSlice.sortDir);
 
   const currentSort = useSelector((state) => state.TableSlice.currentSort);
   const currentDirection = useSelector(
@@ -39,10 +42,11 @@ const TableManual = () => {
   const [totalPage, settotalPage] = useState(null);
   const [defaultSelect, setdefaultSelect] = useState({ label: 5, value: 5 });
   // const [sortDirection, setsortDirection] = useState();
-  const [sortType, setsortType] = useState();
   const table_Cat_url = `${baseUrl}/api/v1/monitoring/sales/monitoring-table/?limit=${perPage}&offset=${
     (pageNumber - 1) * perPage
   }&sort_value=${currentSort}&sort_ascending=${currentDirection}`;
+
+  //   const [totalQuantity, settotalQuantity] = useState(0);
 
   useEffect(() => {
     settableH([]);
@@ -61,6 +65,13 @@ const TableManual = () => {
         console.log(res.data);
         const tableHeader = res.data.table.header;
         const tableBody = res.data.table.body.results;
+        console.log(res.data);
+        // const dataMod = res.data.table.body.results;
+        // let initVal = 0;
+        // dataMod.forEach(
+        //   (el) => (initVal = +initVal + +el.num_p.replaceAll(",", ""))
+        // );
+        // settotalQuantity(initVal);
 
         // dispatch(getTableHeader({table_header:tableHeader}))
         settableLength(res.data.table.body.count);
@@ -75,15 +86,6 @@ const TableManual = () => {
     { value: 10, label: "10" },
     { value: 20, label: "20" },
   ];
-
-  const [counter, setcounter] = useState(0);
-  useEffect(() => {
-    const getEl = document.querySelectorAll(".tdw_animation div");
-    for (let i = 0; i < getEl.length; i++) {
-      getEl[i].style.animationDelay = `${i / 10}s`;
-    }
-    console.log(getEl);
-  }, []);
 
   const itemPerPage = useCallback(
     (e) => {
@@ -121,9 +123,13 @@ const TableManual = () => {
     setpageNumber(goToState);
     setgoToState(1);
   };
+  const copyHandler = (e) => {
+    console.log(e);
+    console.log(e.target);
+  };
 
   return (
-    <div className="table_manual_container">
+    <div className="table_manual_container" onCopy={copyHandler}>
       {tableH.length === 0 ? (
         <h1>Loading</h1>
       ) : (
@@ -133,47 +139,36 @@ const TableManual = () => {
               <thead>
                 <tr>
                   {Object.entries(tableH).map(([key, val]) => (
-                    <SingleHeader
-                      key={key}
-                      val={val}
-                      id={key}
-                      setsortType={setsortType}
-                    />
+                    <SingleHeader key={key} val={val} id={key} />
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {tableB.map((el, index) => (
-                  <tr key={`el+${index}`}>
+                  <tr key={`el+${index}`} className="td_container">
                     {Object.entries(el).map(([key, val]) =>
-                      key === "Quantity" ? (
-                        <Tdw
-                          className="tdw_animation"
+                      key === "num_p" ||
+                      key === "total_p" ||
+                      key === "percent" ? (
+                        <td
+                          className="t_data_container"
                           key={val + key}
                           id={key}
-                          // colorWidth={
-                          //   +(
-                          //     (+val.replaceAll(",", "") / initial) *
-                          //     100
-                          //   ).toFixed(2)
-                          // }
                         >
-                          <div></div>
-                          {/* {
-                            +(
-                              (+val.replaceAll(",", "") / initial) *
-                              100
-                            ).toFixed(2)
-                          } */}
-                          <span style={{ paddingLeft: "5px" }}>%</span>
-                          <TdText
-                            className="value_show"
-                            key={key + val}
+                          <AnimatedRow
+                            val={val}
+                            el={el}
                             id={key}
-                          >
+                            index={index}
+                            tableH={tableH}
+                            // totalQuantity={totalQuantity}
+                          />
+                          <AnimateData val={val} />
+                          {/* <span style={{ paddingLeft: "5px" }}>%</span> */}
+                          {/* <div className="value_show" key={key + val} id={key}>
                             {val}
-                          </TdText>
-                        </Tdw>
+                          </div> */}
+                        </td>
                       ) : (
                         <td key={val + key} id={key}>
                           {val}
@@ -232,91 +227,4 @@ const TableManual = () => {
   );
 };
 
-export default TableManual;
-
-const Tr = styled.tr``;
-const Td = styled.td`
-  text-align: right;
-  position: relative;
-  z-index: 10;
-  font-weight: bold;
-  div {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: blue;
-    width: 100%;
-    height: 100%;
-    background-color: #00ff00;
-    z-index: -1;
-    // opacity: ${(props) => 0.05 + props.colorWidth / 100};
-  }
-  .
-`;
-const Tdw = styled(Td)`
-  div {
-    width: ${(props) => 2 + props.colorWidth}%;
-    // animation-delay: ${(props) => props.id / 10}s;
-  }
-  &:hover {
-    color: transparent;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    div {
-      background-color: transparent;
-    }
-    .value_show {
-      opacity: 1;
-      transition: 0.4s ease all;
-      border: 1px solid #00ccff;
-    }
-  }
-`;
-const TableD = styled.td`
-  position: relative;
-  width: 400px;
-  color: blue;
-
-  div {
-    position: absolute;
-    bottom: 80%;
-    left: 0;
-    width: fit-content;
-    color: white;
-    background-color: black;
-    opacity: 0;
-    transform: translatey(10px);
-    transition: 0.2s ease all;
-    padding: 3px 6px;
-    border-radius: 4px;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-    font-size: 10px;
-    font-family: "Roboto", sans-serif;
-    font-wight: bolder;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-  &:hover {
-    div {
-      opacity: 1;
-      transform: translatey(0);
-      transition: 0.2s ease all;
-    }
-  }
-`;
-const TdText = styled.td`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  height: fit-content;
-  opacity: 0;
-  /* background-color: black; */
-  color: black;
-  /* padding: 0 6px; */
-  font-size: 10px;
-  border-radius: 6px;
-  transition: 0.4s ease all;
-`;
+export default TableM;

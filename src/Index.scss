@@ -399,3 +399,45 @@ td {
   justify-content: center;
   align-items: center;
 }
+.t_heat_data {
+}
+@keyframes row-heat {
+  0% {
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.td_heat_container {
+  position: relative;
+  padding: 1rem !important;
+}
+.td_heat_content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid transparent;
+  animation: 0.5s row-heat linear forwards;
+  animation-delay: 0.5s;
+  transform: scale(0);
+
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    // font-weight: 500;
+    font-family: "Roboto";
+  }
+}

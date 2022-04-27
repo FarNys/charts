@@ -19,7 +19,8 @@ import TableManual from "./components/Tables/TableManual";
 import SwrTest from "./components/Swr/SwrTest";
 import Data from "./components/Data/Data";
 import TableM from "./components/Tables/TableM";
-export const baseUrl = "http://192.168.1.118:8000";
+import TableHeat from "./components/Tables/TableHeat";
+export const baseUrl = "http://192.168.1.118:5000";
 
 function App() {
   const { scrollYProgress } = useViewportScroll();
@@ -47,7 +48,8 @@ function App() {
       {/* <CarouselBS /> */}
       {/* <TablePaginate /> */}
       {/* <TableManual /> */}
-      <TableM />
+      {/* <TableM /> */}
+      <TableHeat />
       {/* <SwrTest /> */}
       {/* <Data /> */}
     </div>

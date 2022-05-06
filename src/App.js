@@ -20,6 +20,7 @@ import SwrTest from "./components/Swr/SwrTest";
 import Data from "./components/Data/Data";
 import TableM from "./components/Tables/TableM";
 import TableHeat from "./components/Tables/TableHeat";
+import WorkTable from "./components/WorkTable/WorkTable";
 export const baseUrl = "http://192.168.1.118:5000";
 
 function App() {
@@ -49,9 +50,10 @@ function App() {
       {/* <TablePaginate /> */}
       {/* <TableManual /> */}
       {/* <TableM /> */}
-      <TableHeat />
+      {/* <TableHeat /> */}
       {/* <SwrTest /> */}
       {/* <Data /> */}
+      <WorkTable />
     </div>
   );
 }

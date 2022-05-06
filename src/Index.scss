@@ -441,3 +441,13 @@ td {
     font-family: "Roboto";
   }
 }
+.work_table_container {
+  width: 100%;
+  .work_table_box {
+    width: 100%;
+    input {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+}

@@ -9,6 +9,7 @@ import {
   BsFillArrowDownCircleFill,
   BsFillArrowUpCircleFill,
 } from "react-icons/bs";
+import { BiUpArrow, BiDownArrow } from "react-icons/bi";
 
 const SingleHeader = ({ id, val }) => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const SingleHeader = ({ id, val }) => {
  : <><BsFillArrowDownCircleFill onClick={sortDesc} /> 
          <BsFillArrowUpCircleFill onClick={sortAsc} /></>}
       </div> */}
-      <ConditionalSort id={id} />
+      {val && <ConditionalSort id={id} />}
     </td>
   );
 };
@@ -65,17 +66,17 @@ const ConditionalSort = ({ id }) => {
     return (
       <>
         {currentDirection === "desc" ? (
-          <BsFillArrowUpCircleFill onClick={sortAsc} />
+          <BiUpArrow className="sort_table_icon" onClick={sortAsc} />
         ) : (
-          <BsFillArrowDownCircleFill onClick={sortDesc} />
+          <BiDownArrow className="sort_table_icon" onClick={sortDesc} />
         )}
       </>
     );
   } else {
     return (
       <>
-        <BsFillArrowUpCircleFill onClick={sortAsc} />{" "}
-        <BsFillArrowDownCircleFill onClick={sortDesc} />
+        <BiUpArrow className="sort_table_icon " onClick={sortAsc} />{" "}
+        <BiDownArrow className="sort_table_icon" onClick={sortDesc} />
       </>
     );
   }

@@ -20,7 +20,11 @@ import SwrTest from "./components/Swr/SwrTest";
 import Data from "./components/Data/Data";
 import TableM from "./components/Tables/TableM";
 import TableHeat from "./components/Tables/TableHeat";
-export const baseUrl = "http://192.168.1.118:5000";
+import Draft from "./components/Editor/Draft";
+import NivoSankey from "./components/NivoChart/NivoSankey";
+import Draft2 from "./components/Editor/Draft2";
+
+export const baseUrl = "http://192.168.1.68:80";
 
 function App() {
   const { scrollYProgress } = useViewportScroll();
@@ -49,9 +53,12 @@ function App() {
       {/* <TablePaginate /> */}
       {/* <TableManual /> */}
       {/* <TableM /> */}
-      <TableHeat />
+      {/* <TableHeat /> */}
       {/* <SwrTest /> */}
       {/* <Data /> */}
+      <Draft />
+      <Draft2 />
+      {/* <NivoSankey /> */}
     </div>
   );
 }

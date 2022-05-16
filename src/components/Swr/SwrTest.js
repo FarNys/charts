@@ -8,12 +8,12 @@ const SwrTest = () => {
     axios
       .get(url, {
         headers: {
-          Authorization: "Token 20cbeb0cdaab80e56244ffd303550cb049ba1927",
+          Authorization: "Token 645acd0f5c7c9fc03b9c6307e913a0074a83434d",
         },
       })
       .then((res) => res.data);
   const { data, error } = useSWR(
-    `${baseUrl}/api/v1/workflow/workflow/`,
+    `${baseUrl}/api/v1/workflow/table-row/?work=1`,
     fetcher,
     { refreshInterval: 5000 }
   );

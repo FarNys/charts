@@ -21,6 +21,7 @@ const SingleHeader = ({ id, val }) => {
   //       setsortDir("asc");
   //     }
   //   };
+  console.log(id, val);
 
   return (
     <td className="td_head">

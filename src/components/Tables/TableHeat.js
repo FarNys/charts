@@ -59,7 +59,7 @@ const TableHeat = () => {
       url: table_Cat_url,
       headers: {
         // Authorization: "Token 20cbeb0cdaab80e56244ffd303550cb049ba1927",
-        Authorization: "Token abf71aa782962257109e482b58a9f51bdd74720f",
+        Authorization: "Token 62989f298ab9802631732393723f71bb8a30c216",
       },
     })
       .then((res) => {

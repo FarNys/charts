@@ -7,8 +7,8 @@ const WorkTable = () => {
       { value: "title1", readOnly: true },
       { value: "title2", readOnly: true },
     ],
-    [{ value: 1 }, { value: 3 }],
-    [{ value: 2 }, { value: 4, readOnly: true }],
+    [{ value: 1 }, { value: 2 }],
+    [{ value: "A" }, { value: "b", readOnly: true }],
   ]);
 
   const cellChangeHandler = (changes) => {
@@ -30,6 +30,21 @@ const WorkTable = () => {
     ]);
   };
 
+  //LAST SELECTED DATA CELL
+  const [selectedCell, setselectedCell] = useState(null);
+
+  const selectHandler = (e) => {
+    const targetEl = dataGrid[e.start.i][e.start.j];
+    if (selectedCell !== null) {
+      dataGrid[e.start.i][e.start.j] = { ...selectedCell, readOnly: true };
+    }
+    dataGrid[e.start.i][e.start.j] = { ...targetEl, readOnly: false };
+
+    // setdataGrid([...dataGrid,[{ value: "" }, { value: "", readOnly: true }],])
+    console.log(targetEl, selectedCell);
+    setselectedCell(targetEl);
+  };
+
   return (
     <div className="work_table_container">
       <ReactDataSheet
@@ -37,6 +52,7 @@ const WorkTable = () => {
         data={dataGrid}
         valueRenderer={(cell) => cell.value}
         onCellsChanged={cellChangeHandler}
+        onSelect={selectHandler}
       />
       <div>
         <button onClick={addHandler}>Add</button>

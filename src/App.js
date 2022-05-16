@@ -21,7 +21,8 @@ import Data from "./components/Data/Data";
 import TableM from "./components/Tables/TableM";
 import TableHeat from "./components/Tables/TableHeat";
 import WorkTable from "./components/WorkTable/WorkTable";
-export const baseUrl = "http://192.168.1.118:5000";
+import NivoSankey from "./components/NivoChart/NivoSankey";
+export const baseUrl = "http://192.168.1.68:5000";
 
 function App() {
   const { scrollYProgress } = useViewportScroll();
@@ -49,11 +50,12 @@ function App() {
       {/* <CarouselBS /> */}
       {/* <TablePaginate /> */}
       {/* <TableManual /> */}
-      {/* <TableM /> */}
+      <TableM />
       {/* <TableHeat /> */}
       {/* <SwrTest /> */}
       {/* <Data /> */}
-      <WorkTable />
+      {/* <WorkTable /> */}
+      {/* <NivoSankey /> */}
     </div>
   );
 }

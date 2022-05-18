@@ -57,7 +57,7 @@ const TableM = () => {
       method: "get",
       url: table_Cat_url,
       headers: {
-        Authorization: "Token 20cbeb0cdaab80e56244ffd303550cb049ba1927",
+        Authorization: "Token 645acd0f5c7c9fc03b9c6307e913a0074a83434d",
         // Authorization: "Token abf71aa782962257109e482b58a9f51bdd74720f",
       },
     })

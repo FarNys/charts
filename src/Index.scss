@@ -308,8 +308,9 @@
           padding: 0.5rem;
           border: 1px solid rgb(230, 230, 238);
           font-weight: bold;
-          min-width: 65px;
+          min-width: 100px;
           text-align: center;
+          background-color: rgba(54, 153, 255, 0.1);
           // min-width: auto;
         }
       }
@@ -329,6 +330,32 @@
       }
     }
   }
+}
+.table_header_input_container {
+  // outline: none;
+  display: flex;
+  flex-direction: column;
+  // max-width: inherit;
+  > input {
+    border: 1px solid #3676ff54;
+    border-radius: 4px;
+    padding: 4px 8px;
+    outline: none;
+    //THIS STYLE WILL REDUCE WIDTH TO 100%-DEFAULT HAS MORE WIDTH!
+    // width: 100%;
+    //
+    &:focus {
+      border: 1px solid #3677ff;
+    }
+  }
+}
+.table_show_columns_container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.table_select_container {
+  flex: 1;
+  margin-left: 1rem;
 }
 .table_paginator_container {
   margin: 1rem 0;

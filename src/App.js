@@ -23,8 +23,9 @@ import TableHeat from "./components/Tables/TableHeat";
 import Draft from "./components/Editor/Draft";
 import NivoSankey from "./components/NivoChart/NivoSankey";
 import Draft2 from "./components/Editor/Draft2";
+import ZTable from "./components/zTable/ZTable";
 
-export const baseUrl = "http://192.168.1.68:80";
+export const baseUrl = "http://192.168.1.118:8000";
 
 function App() {
   const { scrollYProgress } = useViewportScroll();
@@ -53,12 +54,13 @@ function App() {
       {/* <TablePaginate /> */}
       {/* <TableManual /> */}
       {/* <TableM /> */}
-      {/* <TableHeat /> */}
+      <TableHeat />
       {/* <SwrTest /> */}
       {/* <Data /> */}
-      <Draft />
-      <Draft2 />
+      {/* <Draft />
+      <Draft2 /> */}
       {/* <NivoSankey /> */}
+      <ZTable />
     </div>
   );
 }

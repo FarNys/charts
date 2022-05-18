@@ -25,6 +25,8 @@ import SingleHeatRow from "./SingleHeatRow";
 import { Button } from "react-bootstrap";
 import AnimatedRowHeat from "./AnimateRowHeat";
 import AnimatedPercent from "./AnimatedPercent";
+import { current } from "@reduxjs/toolkit";
+
 // import { useLocation } from "react-router-dom";
 
 // import { useSearchParams } from "react-router-dom";
@@ -33,12 +35,23 @@ const TableHeat = () => {
   const dispatch = useDispatch();
   const [tableH, settableH] = useState([]);
   const [tableB, settableB] = useState([]);
+  const [tableHeadClone, settableHeadClone] = useState([]);
+  const [tableBodyClone, settableBodyClone] = useState([]);
+
   const [tableLength, settableLength] = useState(null);
   const [totals, settotals] = useState(0);
   const [totalSale, settotalSale] = useState(0);
 
+  const [currState, setcurrState] = useState(undefined);
+  const [currDirection, setcurrDirection] = useState(undefined);
+  const [searchList, setsearchList] = useState({});
+  console.log(searchList);
+  const [searchState, setsearchState] = useState(false);
+  const [isAdvance, setisAdvance] = useState(false);
+  const [selectedValues, setselectedValues] = useState([]);
+  const [reCall, setreCall] = useState(false);
   //   const sortDirection = useSelector((state) => state.TableSlice.sortDir);
-
+  const [optionList, setoptionList] = useState([]);
   const currentSort = useSelector((state) => state.TableSlice.currentSort);
   const currentDirection = useSelector(
     (state) => state.TableSlice.currentDirection
@@ -55,28 +68,47 @@ const TableHeat = () => {
   // }&sort_value=${currentSort}&sort_ascending=${currentDirection}`;
   const table_Cat_url = `${baseUrl}/api/v1/monitoring/sales/monitoring-table/?limit=${perPage}&offset=${
     (pageNumber - 1) * perPage
-  }&sort_value=${currentSort}&sort_ascending=${currentDirection}`;
+  }&sort_value=${currState}&sort_ascending=${currDirection}`;
   //   const [totalQuantity, settotalQuantity] = useState(0);
 
   useEffect(() => {
     settableH([]);
     settableB([]);
+    settableHeadClone([]);
+    settableBodyClone([]);
     settableLength(null);
-    console.log("zxzxzxzxz");
+    setsearchList({});
+    let x;
+    for (const key in searchList) {
+      if (searchList[key] !== "") {
+        x = { ...x, [key]: searchList[key].trim() };
+      }
+    }
+    console.log(x);
+
     axios({
       method: "get",
       url: table_Cat_url,
       headers: {
-        Authorization: "Token 20cbeb0cdaab80e56244ffd303550cb049ba1927",
+        Authorization: "Token 645acd0f5c7c9fc03b9c6307e913a0074a83434d",
         // Authorization: "Token abf71aa782962257109e482b58a9f51bdd74720f",
       },
+      params: { ...x },
     })
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
         const tableHeader = res.data.table.header;
         const tableBody = res.data.table.body.results;
         let total = 0;
         let totalSales = 0;
+        console.log(tableHeader);
+        console.log(tableBody);
+        let createOption = [];
+        for (const item in tableHeader) {
+          const x = { value: item, label: tableHeader[item] };
+          createOption.push(x);
+        }
+        setoptionList(createOption);
         for (let i = 0; i < tableBody.length; i++) {
           const x = tableBody[i].OrderId;
           const y = +x.replaceAll(",", "");
@@ -99,11 +131,35 @@ const TableHeat = () => {
 
         // dispatch(getTableHeader({table_header:tableHeader}))
         settableLength(res.data.table.body.count);
-        settableH(tableHeader);
-        settableB(tableBody);
+        if (selectedValues.length > 0) {
+          const x = { ...tableH };
+          const cloneTableBody = [...tableB];
+          for (const key in x) {
+            if (selectedValues.includes(key)) {
+              delete x[key];
+            }
+          }
+          for (let i = 0; i < cloneTableBody.length; i++) {
+            for (const item in cloneTableBody[i]) {
+              if (selectedValues.includes(item)) {
+                delete cloneTableBody[i][item];
+              }
+            }
+          }
+          settableH(x);
+          settableB(cloneTableBody);
+        } else {
+          settableH(tableHeader);
+          settableB(tableBody);
+        }
+        // settableH(tableHeader);
+        // settableB(tableBody);
+        settableHeadClone(tableHeader);
+        settableBodyClone(tableBody);
+        setreCall((prev) => !prev);
       })
       .catch((err) => console.log(err));
-  }, [perPage, pageNumber, currentSort, currentDirection]);
+  }, [perPage, pageNumber, currState, currDirection, searchState]);
 
   const options = [
     { value: 5, label: "5" },
@@ -148,65 +204,139 @@ const TableHeat = () => {
     setgoToState(1);
   };
 
+  const acceptHandler = () => {
+    setsearchState((prev) => !prev);
+  };
+
+  const tableShowHandler = (e) => {
+    e.preventDefault();
+    setisAdvance((prev) => !prev);
+    console.log(isAdvance);
+  };
+
+  const selectChangeHandler = (e) => {
+    const getValue = e.map((el) => el.value);
+    setselectedValues(getValue);
+  };
+
+  const colHandler = () => {
+    const cloneTableHead = { ...tableHeadClone };
+    const cloneTableBody = [...tableBodyClone];
+    for (const key in cloneTableHead) {
+      if (selectedValues.includes(key)) {
+        delete cloneTableHead[key];
+      }
+    }
+    for (let i = 0; i < cloneTableBody.length; i++) {
+      for (const item in cloneTableBody[i]) {
+        if (selectedValues.includes(item)) {
+          delete cloneTableBody[i][item];
+        }
+      }
+    }
+    settableH(cloneTableHead);
+    settableB(cloneTableBody);
+
+    // console.log(cloneTableHead);
+    // console.log(tableH);
+  };
+  // console.log(selectedValues);
+  // console.log(optionList);
+  console.log(tableH);
+  console.log(tableB);
   return (
     <div className="table_manual_container">
+      <div className="table_show_columns_container">
+        <button onClick={colHandler}> اعمال ستون</button>
+        {optionList.length > 0 && (
+          <div className="table_select_container">
+            <Select
+              options={optionList}
+              isMulti
+              onChange={selectChangeHandler}
+            />
+          </div>
+        )}
+      </div>
+      {isAdvance ? (
+        <button onClick={tableShowHandler}>Simple</button>
+      ) : (
+        <button onClick={tableShowHandler}>Advance</button>
+      )}{" "}
       {tableH.length === 0 ? (
         <h1>Loading</h1>
       ) : (
         <>
           <div className="table_manual_box">
-            <table>
-              <thead>
-                <tr>
-                  {Object.entries(tableH).map(([key, val]) => (
-                    <SingleHeader key={key} val={val} id={key} />
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {tableB.map((el, index) => (
-                  <tr key={`el+${index}`} className="td_container">
-                    {Object.entries(el).map(([key, val]) =>
-                      key === "OrderId" || key === "total" ? (
-                        <td className="t_data_container" key={val} id={key}>
-                          <AnimatedRowHeat
-                            val={val}
-                            el={el}
-                            id={key}
-                            index={index}
-                            tableH={tableH}
-                            totals={key === "OrderId" ? totals : totalSale}
-                            // totalQuantity={totalQuantity}
-                          />
-                          <AnimatedPercent
-                            val={val}
-                            el={el}
-                            id={key}
-                            index={index}
-                            tableH={tableH}
-                            totals={totals}
-                          />
-                          <AnimateData val={val} />
-                          {/* <span style={{ paddingLeft: "5px" }}>%</span> */}
-                          {/* <div className="value_show" key={key + val} id={key}>
+            <div className="table_accept_btn_container">
+              <button onClick={acceptHandler}>اعمال</button>
+            </div>
+            {isAdvance ? (
+              <table>
+                <thead>
+                  <tr>
+                    {Object.entries(tableH).map(([key, val]) => (
+                      <SingleHeader
+                        key={key}
+                        val={val}
+                        id={key}
+                        setcurrState={setcurrState}
+                        currState={currState}
+                        setcurrDirection={setcurrDirection}
+                        currDirection={currDirection}
+                        setsearchList={setsearchList}
+                        searchList={searchList}
+                      />
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {tableB.map((el, index) => (
+                    <tr key={`el+${index}`} className="td_container">
+                      {Object.entries(el).map(([key, val]) =>
+                        key === "OrderId" || key === "total" ? (
+                          <td className="t_data_container" key={val} id={key}>
+                            <AnimatedRowHeat
+                              val={val}
+                              el={el}
+                              id={key}
+                              index={index}
+                              tableH={tableH}
+                              totals={key === "OrderId" ? totals : totalSale}
+                              // totalQuantity={totalQuantity}
+                            />
+                            <AnimatedPercent
+                              val={val}
+                              el={el}
+                              id={key}
+                              index={index}
+                              tableH={tableH}
+                              totals={totals}
+                            />
+                            <AnimateData val={val} />
+                            {/* <span style={{ paddingLeft: "5px" }}>%</span> */}
+                            {/* <div className="value_show" key={key + val} id={key}>
                             {val}
                           </div> */}
-                        </td>
-                      ) : (
-                        <td className="td_heat_container">
-                          <SingleHeatRow
-                            key={val}
-                            val={val}
-                            index={index}
-                            objKey={key}
-                          />
-                        </td>
-                      )
-                    )}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                          </td>
+                        ) : (
+                          <td className="td_heat_container">
+                            <SingleHeatRow
+                              key={val}
+                              val={val}
+                              index={index}
+                              objKey={key}
+                            />
+                          </td>
+                        )
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              pageNumber
+            )}
           </div>
           <div className="table_paginator_container">
             <div className="table_dropdown_container">

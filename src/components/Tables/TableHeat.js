@@ -57,6 +57,8 @@ const TableHeat = () => {
     (state) => state.TableSlice.currentDirection
   );
 
+  const [serverModal, setserverModal] = useState(false);
+
   //ITEM PER PAGE HANDLER
   const [perPage, setperPage] = useState(5);
   const [pageNumber, setpageNumber] = useState(1);
@@ -90,8 +92,8 @@ const TableHeat = () => {
       method: "get",
       url: table_Cat_url,
       headers: {
-        Authorization: "Token 645acd0f5c7c9fc03b9c6307e913a0074a83434d",
-        // Authorization: "Token abf71aa782962257109e482b58a9f51bdd74720f",
+        // Authorization: "Token 645acd0f5c7c9fc03b9c6307e913a0074a83434d",
+        Authorization: "Token 62989f298ab9802631732393723f71bb8a30c216",
       },
       params: { ...x },
     })
@@ -158,7 +160,15 @@ const TableHeat = () => {
         settableBodyClone(tableBody);
         setreCall((prev) => !prev);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        if (!serverModal) {
+          setserverModal(true);
+          setTimeout(() => {
+            window.location.reload();
+          }, 20000);
+        }
+      });
   }, [perPage, pageNumber, currState, currDirection, searchState]);
 
   const options = [
@@ -240,13 +250,36 @@ const TableHeat = () => {
     // console.log(cloneTableHead);
     // console.log(tableH);
   };
+
+  const [errorTimer, seterrorTimer] = useState(20);
+  useEffect(() => {
+    if (serverModal) {
+      console.log("HI ALL");
+      setTimeout(() => {
+        seterrorTimer(errorTimer - 1);
+        console.log(errorTimer);
+      }, 1000);
+      // clearInterval(interval);
+    }
+  }, [serverModal, errorTimer]);
+
   // console.log(selectedValues);
   // console.log(optionList);
   console.log(tableH);
   console.log(tableB);
+
+  const progressStyle = {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    height: "100%",
+    backgroundColor: "rgb(47, 216, 146)",
+    width: (19 - errorTimer) * 5 + "%",
+  };
+
   return (
     <div className="table_manual_container">
-      <div className="table_show_columns_container">
+      {/* <div className="table_show_columns_container">
         <button onClick={colHandler}> اعمال ستون</button>
         {optionList.length > 0 && (
           <div className="table_select_container">
@@ -262,16 +295,24 @@ const TableHeat = () => {
         <button onClick={tableShowHandler}>Simple</button>
       ) : (
         <button onClick={tableShowHandler}>Advance</button>
-      )}{" "}
+      )} */}
+      {serverModal && (
+        <div className="server_modal_container">
+          <p>{errorTimer}</p>
+          <div className="server_error_progress_bar_container">
+            <div style={progressStyle}></div>
+          </div>
+        </div>
+      )}
       {tableH.length === 0 ? (
-        <h1>Loading</h1>
+        <h1>Loading . . .</h1>
       ) : (
         <>
           <div className="table_manual_box">
             <div className="table_accept_btn_container">
               <button onClick={acceptHandler}>اعمال</button>
             </div>
-            {isAdvance ? (
+            {!isAdvance ? (
               <table>
                 <thead>
                   <tr>
@@ -295,7 +336,11 @@ const TableHeat = () => {
                     <tr key={`el+${index}`} className="td_container">
                       {Object.entries(el).map(([key, val]) =>
                         key === "OrderId" || key === "total" ? (
-                          <td className="t_data_container" key={val} id={key}>
+                          <td
+                            className="t_data_container"
+                            key={`${el}-${val}-${key}-${index}`}
+                            id={key}
+                          >
                             <AnimatedRowHeat
                               val={val}
                               el={el}
@@ -303,7 +348,6 @@ const TableHeat = () => {
                               index={index}
                               tableH={tableH}
                               totals={key === "OrderId" ? totals : totalSale}
-                              // totalQuantity={totalQuantity}
                             />
                             <AnimatedPercent
                               val={val}
@@ -314,15 +358,13 @@ const TableHeat = () => {
                               totals={totals}
                             />
                             <AnimateData val={val} />
-                            {/* <span style={{ paddingLeft: "5px" }}>%</span> */}
-                            {/* <div className="value_show" key={key + val} id={key}>
-                            {val}
-                          </div> */}
                           </td>
                         ) : (
-                          <td className="td_heat_container">
+                          <td
+                            className="td_heat_container"
+                            key={`${key}-${val}-${index}`}
+                          >
                             <SingleHeatRow
-                              key={val}
                               val={val}
                               index={index}
                               objKey={key}

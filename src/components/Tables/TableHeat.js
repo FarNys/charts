@@ -149,13 +149,14 @@ const TableHeat = () => {
             }
           }
           settableH(x);
-          settableB(cloneTableBody);
+          settableB(tableBody);
         } else {
           settableH(tableHeader);
           settableB(tableBody);
         }
         // settableH(tableHeader);
         // settableB(tableBody);
+        console.log("ZMAMAMDAL;LAKSFJALKFHSADKLFHAKDLHNG");
         settableHeadClone(tableHeader);
         settableBodyClone(tableBody);
         setreCall((prev) => !prev);
@@ -244,6 +245,7 @@ const TableHeat = () => {
         }
       }
     }
+    console.log(tableBodyClone);
     settableH(cloneTableHead);
     settableB(cloneTableBody);
 
@@ -269,6 +271,7 @@ const TableHeat = () => {
   console.log(tableHeadClone);
   console.log(tableB);
   console.log(tableBodyClone);
+  console.log(selectedValues);
 
   const progressStyle = {
     position: "absolute",
@@ -281,8 +284,8 @@ const TableHeat = () => {
 
   return (
     <div className="table_manual_container">
-      {/* <div className="table_show_columns_container">
-        <button onClick={colHandler}> اعمال ستون</button>
+      <div className="table_show_columns_container">
+        {/* <button onClick={colHandler}> اعمال ستون</button> */}
         {optionList.length > 0 && (
           <div className="table_select_container">
             <Select
@@ -292,7 +295,7 @@ const TableHeat = () => {
             />
           </div>
         )}
-      </div> */}
+      </div>
       {/* {isAdvance ? (
         <button onClick={tableShowHandler}>Simple</button>
       ) : (

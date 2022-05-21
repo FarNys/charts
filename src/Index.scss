@@ -464,11 +464,11 @@ td {
   &:hover {
     .animated_data_table {
       transition: 0.3s ease opacity;
-      opacity: 1;
+      opacity: 0;
     }
     .table_heat_row_percent {
       transition: 0.3s ease opacity;
-      opacity: 0;
+      opacity: 1;
     }
   }
 }
@@ -486,7 +486,7 @@ td {
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;
+  opacity: 1;
   transition: 0.3s ease opacity;
 }
 .t_heat_data {
@@ -556,7 +556,7 @@ td {
   height: 100%;
   font-size: 12px;
   font-weight: bold;
-  opacity: 1;
+  opacity: 0;
   transition: 0.3s ease opacity;
 }
 .editor_container {

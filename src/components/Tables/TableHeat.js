@@ -92,8 +92,8 @@ const TableHeat = () => {
       method: "get",
       url: table_Cat_url,
       headers: {
-        // Authorization: "Token 645acd0f5c7c9fc03b9c6307e913a0074a83434d",
-        Authorization: "Token 62989f298ab9802631732393723f71bb8a30c216",
+        Authorization: "Token 645acd0f5c7c9fc03b9c6307e913a0074a83434d",
+        // Authorization: "Token 62989f298ab9802631732393723f71bb8a30c216",
       },
       params: { ...x },
     })
@@ -134,8 +134,8 @@ const TableHeat = () => {
         // dispatch(getTableHeader({table_header:tableHeader}))
         settableLength(res.data.table.body.count);
         if (selectedValues.length > 0) {
-          const x = { ...tableH };
-          const cloneTableBody = [...tableB];
+          const x = { ...tableHeader };
+          const cloneTableBody = [...tableBody];
           for (const key in x) {
             if (selectedValues.includes(key)) {
               delete x[key];
@@ -266,7 +266,9 @@ const TableHeat = () => {
   // console.log(selectedValues);
   // console.log(optionList);
   console.log(tableH);
+  console.log(tableHeadClone);
   console.log(tableB);
+  console.log(tableBodyClone);
 
   const progressStyle = {
     position: "absolute",
@@ -290,8 +292,8 @@ const TableHeat = () => {
             />
           </div>
         )}
-      </div>
-      {isAdvance ? (
+      </div> */}
+      {/* {isAdvance ? (
         <button onClick={tableShowHandler}>Simple</button>
       ) : (
         <button onClick={tableShowHandler}>Advance</button>

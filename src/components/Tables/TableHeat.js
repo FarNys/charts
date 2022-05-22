@@ -37,6 +37,7 @@ const TableHeat = () => {
   const [tableB, settableB] = useState([]);
   const [tableHeadClone, settableHeadClone] = useState([]);
   const [tableBodyClone, settableBodyClone] = useState([]);
+  const [loading, setloading] = useState(false);
 
   const [tableLength, settableLength] = useState(null);
   const [totals, settotals] = useState(0);
@@ -60,7 +61,7 @@ const TableHeat = () => {
   const [serverModal, setserverModal] = useState(false);
 
   //ITEM PER PAGE HANDLER
-  const [perPage, setperPage] = useState(5);
+  const [perPage, setperPage] = useState(10);
   const [pageNumber, setpageNumber] = useState(1);
   const [totalPage, settotalPage] = useState(null);
   const [defaultSelect, setdefaultSelect] = useState({ label: 5, value: 5 });
@@ -74,6 +75,7 @@ const TableHeat = () => {
   //   const [totalQuantity, settotalQuantity] = useState(0);
 
   useEffect(() => {
+    setloading(true);
     settableH([]);
     settableB([]);
     settableHeadClone([]);
@@ -99,6 +101,8 @@ const TableHeat = () => {
     })
       .then((res) => {
         console.log(res);
+        setloading(false);
+        console.log(998899889988);
         const tableHeader = res.data.table.header;
         const tableBody = res.data.table.body.results;
         let total = 0;
@@ -163,6 +167,7 @@ const TableHeat = () => {
       })
       .catch((err) => {
         console.log(err);
+        setloading(false);
         if (!serverModal) {
           setserverModal(true);
           setTimeout(() => {
@@ -173,9 +178,9 @@ const TableHeat = () => {
   }, [perPage, pageNumber, currState, currDirection, searchState]);
 
   const options = [
-    { value: 5, label: "5" },
     { value: 10, label: "10" },
-    { value: 20, label: "20" },
+    { value: 25, label: "25" },
+    { value: 100, label: "100" },
   ];
 
   const itemPerPage = useCallback(
@@ -284,14 +289,24 @@ const TableHeat = () => {
 
   return (
     <div className="table_manual_container">
-      <div className="table_show_columns_container">
+      <div
+        className={
+          loading
+            ? "table_show_columns_container table_show_columns_container_disable"
+            : "table_show_columns_container"
+        }
+      >
         {/* <button onClick={colHandler}> اعمال ستون</button> */}
+        <div className="table_accept_btn_container">
+          <button onClick={acceptHandler}>اعمال</button>
+        </div>
         {optionList.length > 0 && (
           <div className="table_select_container">
             <Select
               options={optionList}
               isMulti
               onChange={selectChangeHandler}
+              placeholder="یک یا چند ستون را انتخاب کنید ..."
             />
           </div>
         )}
@@ -309,14 +324,11 @@ const TableHeat = () => {
           </div>
         </div>
       )}
-      {tableH.length === 0 ? (
+      {loading ? (
         <h1>Loading . . .</h1>
       ) : (
         <>
           <div className="table_manual_box">
-            <div className="table_accept_btn_container">
-              <button onClick={acceptHandler}>اعمال</button>
-            </div>
             {!isAdvance ? (
               <table>
                 <thead>
@@ -412,6 +424,7 @@ const TableHeat = () => {
                   className="arrow_left_icon_table"
                 />
               )}
+              <div className="table_paginator_page_number">{pageNumber}</div>
               {pageNumber * perPage < tableLength && (
                 <BsFillArrowRightSquareFill
                   onClick={nextHandler}
@@ -420,14 +433,17 @@ const TableHeat = () => {
               )}
             </div>
             <div className="table_paginator_goto">
+              <div className="table_paginator_total_page_container">
+                مجموع صفحات {totalPage}
+              </div>
               <input type="number" onChange={goToChange} value={goToState} />
-              <Button onClick={changePageHandler}>Go</Button>
+              <Button onClick={changePageHandler}>برو</Button>
             </div>
           </div>
           <div className="table_page_info_container">
-            <div>تعداد کل صفحات : {totalPage}</div>
-            <div>تعداد کل آیتم ها : {tableLength}</div>
-            <div> شماره صفحه: {pageNumber}</div>
+            {/* <div>تعداد کل صفحات : {totalPage}</div> */}
+            {/* <div>تعداد کل آیتم ها : {tableLength}</div> */}
+            {/* <div> شماره صفحه: {pageNumber}</div> */}
           </div>
         </>
       )}

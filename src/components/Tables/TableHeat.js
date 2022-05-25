@@ -64,7 +64,7 @@ const TableHeat = () => {
   const [perPage, setperPage] = useState(10);
   const [pageNumber, setpageNumber] = useState(1);
   const [totalPage, settotalPage] = useState(null);
-  const [defaultSelect, setdefaultSelect] = useState({ label: 5, value: 5 });
+  const [defaultSelect, setdefaultSelect] = useState({ label: 10, value: 110 });
   // const [sortDirection, setsortDirection] = useState();
   // const table_Cat_url = `${baseUrl}/api/v1/customer/return-rate/table/?limit=${perPage}&offset=${
   //   (pageNumber - 1) * perPage
@@ -94,8 +94,8 @@ const TableHeat = () => {
       method: "get",
       url: table_Cat_url,
       headers: {
-        Authorization: "Token 645acd0f5c7c9fc03b9c6307e913a0074a83434d",
-        // Authorization: "Token 62989f298ab9802631732393723f71bb8a30c216",
+        // Authorization: "Token 645acd0f5c7c9fc03b9c6307e913a0074a83434d",
+        Authorization: "Token 62989f298ab9802631732393723f71bb8a30c216",
       },
       params: { ...x },
     })
@@ -116,12 +116,12 @@ const TableHeat = () => {
         }
         setoptionList(createOption);
         for (let i = 0; i < tableBody.length; i++) {
-          const x = tableBody[i].OrderId;
+          const x = tableBody[i].OrderId_NUM;
           const y = +x.replaceAll(",", "");
           total = total + y;
         }
         for (let i = 0; i < tableBody.length; i++) {
-          const x = tableBody[i].total;
+          const x = tableBody[i].total_NUM;
           const y = +x.replaceAll(",", "");
           totalSales = totalSales + y;
         }
@@ -168,12 +168,12 @@ const TableHeat = () => {
       .catch((err) => {
         console.log(err);
         setloading(false);
-        if (!serverModal) {
-          setserverModal(true);
-          setTimeout(() => {
-            window.location.reload();
-          }, 20000);
-        }
+        // if (!serverModal) {
+        //   setserverModal(true);
+        //   setTimeout(() => {
+        //     window.location.reload();
+        //   }, 20000);
+        // }
       });
   }, [perPage, pageNumber, currState, currDirection, searchState]);
 
@@ -352,7 +352,7 @@ const TableHeat = () => {
                   {tableB.map((el, index) => (
                     <tr key={`el+${index}`} className="td_container">
                       {Object.entries(el).map(([key, val]) =>
-                        key === "OrderId" || key === "total" ? (
+                        key.includes("_NUM") ? (
                           <td
                             className="t_data_container"
                             key={`${el}-${val}-${key}-${index}`}

@@ -25,22 +25,20 @@ const totalData = {
 const SingleRowNum = ({ id, el, val }) => {
   const [calcData, setcalcData] = useState(null);
   useEffect(() => {
-    for (const item in totalData) {
-      if (item === id) {
-        const newVal = +val.replaceAll(",", "");
-        const newItem = +totalData[item].replaceAll(",", "");
-        if (val == 0) {
-          setcalcData(0);
-        } else {
-          const value = (+newVal / +newItem).toFixed(2);
-          setcalcData(value);
-        }
-
-        return;
-      }
-    }
+    // for (const item in totalData) {
+    //   if (item === id) {
+    //     const newVal = +val.replaceAll(",", "");
+    //     const newItem = +totalData[item].replaceAll(",", "");
+    //     if (val == 0) {
+    //       setcalcData(0);
+    //     } else {
+    //       const value = (+newVal / +newItem).toFixed(2);
+    //       setcalcData(value);
+    //     }
+    //     return;
+    //   }
+    // }
   }, []);
-  console.log(+calcData, typeof calcData);
   // const singleRowNumStyle = {
   //   position: "absolute",
   //   top: "0",
@@ -67,7 +65,7 @@ const SingleRowNum = ({ id, el, val }) => {
     <td className="single_row_num_container">
       {/* <div style={singleRowNumStyle}></div> */}
       <div className="single_row_num_heat" style={singleRowNum}>
-        {calcData && calcData} %
+        {val} %
       </div>
       <div className="single_row_num_value">{val}</div>
     </td>

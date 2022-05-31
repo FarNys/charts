@@ -725,3 +725,21 @@ textarea {
   // font-size: 20px;
   font-weight: 500;
 }
+//SKELETON TABLE LOADING
+.table_skeleton_loading {
+  margin-top: 3rem;
+
+  > thead {
+    th {
+      padding: 5px 10px;
+    }
+  }
+  tr {
+    height: 50px;
+  }
+  > thead {
+    > tr {
+      border: 1px solid rgb(216, 216, 216) !important;
+    }
+  }
+}

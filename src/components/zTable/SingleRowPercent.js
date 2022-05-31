@@ -3,12 +3,14 @@ import React from "react";
 const SingleRowPercent = ({ val }) => {
   const singleRowPercentStylePos = {
     textAlign: "center",
-    backgroundColor: `rgba(53,154,250,${+val.replace("%", "") / 100})`,
+    // backgroundColor: `rgba(53,154,250,${+val.replace("%", "") / 100})`,
+    backgroundColor: `rgba(53,154,250,1)`,
     fontSize: "12px",
   };
   const singleRowPercentStyleNeg = {
     textAlign: "center",
-    backgroundColor: `rgba(246,78,96,${+val.replace("%", "") / 100})`,
+    // backgroundColor: `rgba(246,78,96,${+val.replace("%", "") / 100})`,
+    backgroundColor: `rgba(246,78,96,1)`,
     fontSize: "12px",
   };
 

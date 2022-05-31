@@ -28,6 +28,10 @@ import AnimatedPercent from "../Tables/AnimatedPercent";
 import { current } from "@reduxjs/toolkit";
 import TableSingleRow from "./TableSingleRow";
 
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import TableLoading from "./TableLoading";
+
 // import { useLocation } from "react-router-dom";
 
 // import { useSearchParams } from "react-router-dom";
@@ -65,12 +69,12 @@ const ZTable = () => {
   const [perPage, setperPage] = useState(10);
   const [pageNumber, setpageNumber] = useState(1);
   const [totalPage, settotalPage] = useState(null);
-  const [defaultSelect, setdefaultSelect] = useState({ label: 10, value: 110 });
+  const [defaultSelect, setdefaultSelect] = useState({ label: 10, value: 10 });
   // const [sortDirection, setsortDirection] = useState();
   // const table_Cat_url = `${baseUrl}/api/v1/customer/return-rate/table/?limit=${perPage}&offset=${
   //   (pageNumber - 1) * perPage
   // }&sort_value=${currentSort}&sort_ascending=${currentDirection}`;
-  const table_Cat_url = `${baseUrl}/api/v1/monitoring/sales/monitoring-table/?limit=${perPage}&offset=${
+  const table_Cat_url = `${baseUrl}/api/v1/customer/customer-list/table/?limit=${perPage}&offset=${
     (pageNumber - 1) * perPage
   }&sort_value=${currState}&sort_ascending=${currDirection}`;
   //   const [totalQuantity, settotalQuantity] = useState(0);
@@ -116,19 +120,7 @@ const ZTable = () => {
           createOption.push(x);
         }
         setoptionList(createOption);
-        for (let i = 0; i < tableBody.length; i++) {
-          const x = tableBody[i].OrderId_NUM;
-          const y = +x.replaceAll(",", "");
-          total = total + y;
-        }
-        for (let i = 0; i < tableBody.length; i++) {
-          const x = tableBody[i].total_NUM;
-          const y = +x.replaceAll(",", "");
-          totalSales = totalSales + y;
-        }
-        settotals(total);
-        settotalSale(totalSales);
-        console.log(total);
+
         // const dataMod = res.data.table.body.results;
         // let initVal = 0;
         // dataMod.forEach(
@@ -232,6 +224,7 @@ const ZTable = () => {
   };
 
   const selectChangeHandler = (e) => {
+    console.log(e);
     const getValue = e.map((el) => el.value);
     setselectedValues(getValue);
   };
@@ -326,7 +319,7 @@ const ZTable = () => {
         </div>
       )}
       {loading ? (
-        <h1>Loading . . .</h1>
+        <TableLoading loading={loading} />
       ) : (
         <>
           <div className="table_manual_box">

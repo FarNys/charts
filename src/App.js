@@ -24,8 +24,9 @@ import Draft from "./components/Editor/Draft";
 import NivoSankey from "./components/NivoChart/NivoSankey";
 import Draft2 from "./components/Editor/Draft2";
 import ZTable from "./components/zTable/ZTable";
+import Wrapper from "./components/Wrapper";
 
-export const baseUrl = "http://192.168.1.68:8000";
+export const baseUrl = "http://192.168.1.68:5000";
 
 function App() {
   const { scrollYProgress } = useViewportScroll();
@@ -36,6 +37,7 @@ function App() {
         d="M 0, 20 a 20, 20 0 1,0 40,0 a 20, 20 0 1,0 -40,0"
         style={{ pathLength: scrollYProgress }}
       />
+      <
       <Scale />
       <ChildDelay />
       <ChildTransition /> */}
@@ -61,6 +63,9 @@ function App() {
       <Draft2 /> */}
       {/* <NivoSankey /> */}
       <ZTable />
+      {/* <Wrapper x="a" children="gg">
+        Salam
+      </Wrapper>  */}
     </div>
   );
 }

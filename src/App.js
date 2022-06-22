@@ -25,6 +25,8 @@ import NivoSankey from "./components/NivoChart/NivoSankey";
 import Draft2 from "./components/Editor/Draft2";
 import ZTable from "./components/zTable/ZTable";
 import Wrapper from "./components/Wrapper";
+import DataSheet from "./components/DataSheet/DataSheet";
+import SankeyChart from "./components/Rechart/SankeyChart";
 
 export const baseUrl = "http://192.168.1.68:5000";
 
@@ -62,10 +64,13 @@ function App() {
       {/* <Draft />
       <Draft2 /> */}
       {/* <NivoSankey /> */}
-      <ZTable />
+      {/* <ZTable /> */}
       {/* <Wrapper x="a" children="gg">
         Salam
       </Wrapper>  */}
+      {/* <DataSheet /> */}
+      {/* <SankeyChart /> */}
+      <NivoSankey />
     </div>
   );
 }

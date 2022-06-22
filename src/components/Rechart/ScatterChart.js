@@ -8,13 +8,13 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-import { scaleLog } from "d3-scale";
+// import { scaleLog } from "d3-scale";
 
 import axios from "axios";
 import millify from "millify";
 
 const ScatterCharts = () => {
-  const scale = scaleLog().base(Math.E);
+  // const scale = scaleLog().base(Math.E);
 
   const [scatterData, setscatterData] = useState([]);
   const [scatterLabel, setscatterLabel] = useState();

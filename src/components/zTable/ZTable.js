@@ -346,42 +346,6 @@ const ZTable = () => {
                   {tableB.map((el, index) => (
                     <tr key={`${el}+${index}`} className="td_container">
                       {Object.entries(el).map(([key, val]) => (
-                        // key.includes("_NUM") ? (
-                        //   <td
-                        //     className="t_data_container"
-                        //     key={`${el}-${val}-${key}-${index}`}
-                        //     id={key}
-                        //   >
-                        //     <AnimatedRowHeat
-                        //       val={val}
-                        //       el={el}
-                        //       id={key}
-                        //       index={index}
-                        //       tableH={tableH}
-                        //       totals={key === "OrderId" ? totals : totalSale}
-                        //     />
-                        //     <AnimatedPercent
-                        //       val={val}
-                        //       el={el}
-                        //       id={key}
-                        //       index={index}
-                        //       tableH={tableH}
-                        //       totals={totals}
-                        //     />
-                        //     <AnimateData val={val} />
-                        //   </td>
-                        // ) : (
-                        //   <td
-                        //     className="td_heat_container"
-                        //     key={`${key}-${val}-${index}`}
-                        //   >
-                        //     <SingleHeatRow
-                        //       val={val}
-                        //       index={index}
-                        //       objKey={key}
-                        //     />
-                        //   </td>
-                        // )
                         <TableSingleRow
                           el={el}
                           id={key}

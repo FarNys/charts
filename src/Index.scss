@@ -743,3 +743,10 @@ textarea {
     }
   }
 }
+.nivo_sankey_tooltip_container {
+  // border: 1px solid red;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  background-color: white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
